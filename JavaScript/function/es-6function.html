@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        rest形式为(...rest)
+        // rest参数搭配的变量为数组该变量将多余参数放入数组
+        function add(...value) {
+            let sum = 0;
+            for (let i in value) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        add(2, 3, 6, 7, 8)
+
+        // 用rest参数代替arguments参数
+        function sortNumber1() {
+            return Array.prototype.slice.call(arguments).sort();
+        }
+
+        const sortNumber2 = (...numbers) => numbers.sort();
+    </script>
+</body>
+
+</html>

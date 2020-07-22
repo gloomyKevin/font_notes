@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 方方课程内容
+        this;
+        console.log('this === window');//true
+
+        function f1() {
+            console.log(this);
+        }
+
+        f1.call('name: kevin')
+
+        let f2 = () => { console.log('this'); }
+
+        f2.call('name:kevin');//Window
+
+        // 箭头函数的易用性展示
+        var array = [1, 2, 3, 4];
+
+        for (let i = 0; i < array.length; i++) {
+            array[i] = array[i] * array[i];
+        }
+
+        array.map(function (number) {
+            number = number * number;
+        })
+
+        array.map(number => number * number)
+        array.map(n => n * n)
+
+        // 阮一峰
+        let sum = (num1, num2) => { return num1 + num2; }
+
+        let getTempItem = id => ({ id: id, name: "temp" })
+    </script>
+</body>
+
+</html>
