@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        getAsync("fileA.txt", function (error, result) {
+            if (error) {
+                throw error;
+            }
+        })
+
+        let promise = getAsyncPromise("fileA.txt");
+        promise.then(function (result) {
+            // 获取文件内容处理成功时的处理
+        }).catch(function (error) {
+            // 获取文件内容处理失败时的处理
+        })
+    </script>
+</body>
+
+</html>
