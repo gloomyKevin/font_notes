@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            height: 100px;
+            width: 100%;
+            background-color:pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="test"></div>
+    <script>
+        /* review
+        创建对象的方式
+        bind()方法 */
+
+        // observe the sequence of print
+        console.log('1');
+        setTimeout('console.log(2)', 1000);
+        console.log('3');
+
+        // function
+        function f1() {
+            console.log(1);
+        }
+        // setTimeout(f1(), 1000);wrong writting
+        setTimeout(f1, 1000);
+
+        setTimeout(f1, 0);
+        setTimeout(f1);
+
+        /* pass more parameters in setTimeout, they will income the callback function */
+        setTimeout(function(a, b) {
+            console.log(a+b); 
+        }, 1000, 1, 2);
+
+        /* If the callback function is the method of the object
+        'this' will point to the global enviorment */
+        var x = 1;
+
+        var obj = {
+            x: 2,
+            y: function() {
+                console.log(this.x);
+            }
+        };
+
+        setTimeout(obj.y, 1000);
+
+        /* solution1
+        put the method of the object into a function */
+        setTimeout(function() {
+            ob.y;
+        }, 1000);
+
+        // solution2
+        setTimeout(obj.y.bind(obj), 1000);
+
+        /* setInterval */
+
+        /* realize web page animation */
+        div = document.querySelector('.test');
+        var opacity = 1;
+        var fader = setInterval(function() {
+            if(opacity >= 0) {
+                opacity -= 0.1;
+                div.style.opacity = opacity;
+            }else {
+                clearInterval(fader);
+            }
+        }, 100);
+
+        /* debounce function */
+        $('textarea').on('keydown', ajaxAction);
+
+        $('textarea').on('keydown', debounce(ajaxAction, 2500));
+        function debounce(ajaxAction, delay) {
+
+        }
+    </script>
+</body>
+</html>

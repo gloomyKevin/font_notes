@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // callback function
+    // 将f2写成f1的回调函数
+    function f1(callback) {
+        callback();
+    }
+
+    function f2() {
+
+    }
+
+    f1(f2);
+
+    //event linstener
+    f1('done', f2);
+
+    function f1() {
+        setTimeout(function() {
+            f1.trigger('done');
+        }, 1000)
+    };
+
+    // subscribe/publish
+    jQuery.subscribe('done', f2);
+
+    function f1() {
+        setTimeout(function() {
+            jQuery.publish('done');
+        }, 1000);
+    }
+
+    // sync control
+    function sync(arg, callback) {
+        console.log('parameter is' + arg + ', after 1s return');
+        setTimeout(function() {
+            callback(arg * 2);
+        }, 1000)
+    }
+
+    function final(value) {
+        console.log('final', value);
+    }
+
+    async(1, function(value) {
+        async(1, function(value){
+            
+        })
+    })
+
+    // serial_execution串行执行
+    // 编写一个流程控制函数，让它来控制异步任务，一个任务完成以后，再执行另一个。这就叫串行执行
+    
+    </script>
+    
+</body>
+</html>
