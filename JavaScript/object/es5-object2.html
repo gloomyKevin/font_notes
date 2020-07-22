@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // Object对象本身的方法
+        Object.print = function (o) {
+            console.log(o);
+        }
+
+        // Object的实例方法，即定义在Object原型对象Object.prototype上的方法,可以被Object实例直接使用
+        // obj对象的print方法，实际上就是调用Object.prototype.print方法
+        // 凡是定义在Object.prototype对象上面的属性和方法，将被所有实例对象共享
+        Object.prototype.print = function () {
+            console.log(this);
+        }
+
+        let obj = new Object();
+        obj.print()
+
+        let obj = new Object();
+        // 等同于
+        let obj = new Object(null);
+        let obj = new Object(undefined);
+
+        obj instanceof Object
+
+        let obj = new Object(1);
+        obj instanceof Object
+        obj instanceof Number
+
+        let obj = new Object('foo');
+        obj instanceof Object
+        obj instanceof String
+
+        let obj = new Object(true)
+        obj instanceof Object
+        obj instanceof Boolean
+
+
+    </script>
+</body>
+
+</html>

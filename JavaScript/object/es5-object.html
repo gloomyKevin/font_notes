@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 键名是数值，则自动转为字符串
+        let obj1 = {
+            1: 'a',
+            3.2: 'b',
+            1e2: true,
+            0xFF: true
+        }
+
+        console.log(obj1[3.2]);
+
+        // 对象的键名又称“属性（property）”，如果属性的值为函数，将属性称为方法
+        // 拓展：对象的函数属性不适用箭头函数
+        let obj2 = {
+            p: function (x) {
+                return 2 * x;
+            }
+        }
+        console.log(obj2.p(2));
+
+        // 链式引用
+        // 对象1的属性指向对象2，则可以链式引用对象2的属性
+        let obj3 = {};
+        let obj4 = {
+            bar: 'hello'
+        };
+
+        obj3.foo = obj4;
+        console.log(obj3.bar);
+
+
+        // for...in循环实现属性遍历
+        let obj = { a: 1, b: 2, c: 3 };
+
+        for (let i in obj) {
+            console.log('键名：', i);
+            console.log('键值：', obj[i]);
+        }
+
+        // 使用hasOwnProperty在循环内部判断某个属性是否为对象自身的属性
+        let person = { name: 'kevin' };
+
+        for (let i in person) {
+            if (person.hasOwnProperty(i)) {
+                console.log(i);
+                console.log(person[i]);
+            }
+        }
+
+        // 对象的引用：不同的变量名指向同一个对象，那么它们都是这个对象的引用
+        // 也就是说指向同一个内存地址，修改其中一个变量，会影响到其他所有变量。
+        let obj5 = {};
+        let obj6 = obj5;
+
+        obj6.foo = 1;
+        console.log(obj6.foo);
+
+        obj5.bar = 2;
+        console.log(obj6.bar);
+
+        // 如果取消某一个变量对于原对象的引用，不会影响到另一个变量
+        obj6 = 1;
+        console.log(obj5);
+
+        // 这种引用只局限于变量，如果两个变量指向原始类型的值
+        // 变量此时为值的拷贝
+        let x = 1;
+        let y = x;
+
+        x = 2;
+        console.log(y);
+
+        // 解释为 语句 
+        // 表示一个代码区块，里面有一个标签foo，指向表达式123
+        eval('{foo:123}')
+        // 解释为 表达式
+        // 表示一个包含foo属性的对象
+        eval(('{foo:123}'))
+
+    </script>
+</body>
+
+</html>
