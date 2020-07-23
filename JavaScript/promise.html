@@ -143,6 +143,28 @@
             // 后面的语句不再执行
             console.log(2);
         })
+
+        // then方法返回的是一个新promise实例
+        // 可采用链式写法，then方法后再调用then方法
+        // 第一个回调函数完成后，返回结果作为参数，传入第二个回调函数
+        getJSON("/post.json").then((json) => {
+            return json.post
+        }).then((post) => {
+
+        })
+
+        getJSON('/post/1.json').then(
+            post => getJSON(post.commonURL)
+        ).then(
+            comments => console.log('resolved, ', comments),
+            err => console.log('rejected, ', err)
+        )
+
+        getJSON('/posts.json').then(
+            post => getJSON(post.commonURL)
+        ).catch(
+            error => console.log('发生错误！', error)
+        )
     </script>
 </body>
 
