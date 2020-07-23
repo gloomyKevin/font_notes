@@ -160,6 +160,8 @@
             err => console.log('rejected, ', err)
         )
 
+        // 被catch捕获的两种情况
+
         getJSON('/posts.json').then(
             post => getJSON(post.commonURL)
         ).catch(
