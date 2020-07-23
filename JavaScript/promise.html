@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /* getAsync("fileA.txt", function (error, result) {
+            if (error) {
+                throw error;
+            }
+        })
+
+        let promise = getAsyncPromise("fileA.txt");
+        promise.then(function (result) {
+            // 获取文件内容处理成功时的处理
+        }).catch(function (error) {
+            // 获取文件内容处理失败时的处理
+        })
+
+        const promise = new Promise(function (resolve, reject) {
+            if (true) {
+                resolve(value)
+            } else {
+                reject(error);
+            }
+        })
+
+        promise.then(function (value) {
+            // success
+        }, function (error) {
+            // failure
+        }) */
+
+        // Promise对象的简单例子
+        function timeout(ms) {
+            return new Promise((resolve, reject) => {
+                setTimeout(resolve, ms, 'done');
+            })
+        }
+
+        timeout(100).then((value) => {
+            console.log(value);
+        })
+
+        // Promise创建后就会立刻执行
+        // 当前脚本所有同步任务完成后执行then指定的回调函数
+        let promise = new Promise((resolve, reject) => {
+            console.log('promise');
+            resolve();
+        })
+
+        promise.then((resolve) => {
+            console.log('resolved');
+        })
+
+        console.log('Hi');
+        // promise
+        // Hi
+        // resolved
+
+        // 异步加载图片
+        function loadImageAsync(url) {
+            return new Promise((resolve, reject) => {
+                const image = new Image();
+                image.onload = () => {
+                    resolve(image);
+                }
+
+                image.onerror = () => {
+                    reject(new Error('could not load image at ' + url));
+                }
+
+                img.src = url;
+            });
+        }
+
+        // 使用Promise对象实现Ajax操作
+        const getJSON = (url) => {
+            const promise = new Promise((resolve, reject) => {
+                const handler = () => {
+                    if (this.readyState !== 4) {
+                        return;
+                    }
+                    if (this.status === 200) {
+                        resolve(this.Response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                };
+                const client = new XMLHttpRequest();
+                client.open("GET", url);
+                client.onreadystatechange = handler;
+                client.responseType = "json";
+                client.setRequestHeader("Accept", "application/json");
+                client.send();
+            });
+
+            const promise;
+        }
+
+        getJSON("/post.json").then((json) => {
+            console.log('contents ' + son);
+        }, (error) => {
+            console.log('出錯了', error);
+        })
+
+        // resolve参数可能是另一个promise实例
+        //p1状态决定p2状态
+        //如果p1状态为pending，则p2回调函数会等待p1状态改变
+        //如果p2状态为resolved或者rejected，p2回调函数会立刻执行
+        const p1 = new Promise((resolve, reject) => {
+
+        });
+
+        const p2 = new Promise((resolve, reject) => {
+            resolve(p1);
+        })
+
+        p2
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
+
+        // 立即resolve的Promise在本轮事件循环的末尾执行
+        // 总晚于本轮循环的同步任务
+        new Promise((resolve, reject) => {
+            resolve(1);
+            console.log(2);
+        }).then(r => {
+            console.log(r);
+        })
+
+        // 一般来说，调用resolve或reject以后，Promise 的使命就完成了
+        // 后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面
+        // 所以，最好在它们前面加上return语句
+        new Promise((solve, reject) => {
+            return solve(1);
+            // 后面的语句不再执行
+            console.log(2);
+        })
+
+        // then方法返回的是一个新promise实例
+        // 可采用链式写法，then方法后再调用then方法
+        // 第一个回调函数完成后，返回结果作为参数，传入第二个回调函数
+        getJSON("/post.json").then((json) => {
+            return json.post
+        }).then((post) => {
+
+        })
+
+        getJSON('/post/1.json').then(
+            post => getJSON(post.commonURL)
+        ).then(
+            comments => console.log('resolved, ', comments),
+            err => console.log('rejected, ', err)
+        )
+
+        // 被catch捕获的两种情况
+
+        getJSON('/posts.json').then(
+            post => getJSON(post.commonURL)
+        ).catch(
+            error => console.log('发生错误！', error)
+        )
+    </script>
+</body>
+
+</html>
