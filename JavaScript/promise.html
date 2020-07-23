@@ -126,7 +126,23 @@
             .then(result => console.log(result))
             .catch(error => console.log(error))
 
+        // 立即resolve的Promise在本轮事件循环的末尾执行
+        // 总晚于本轮循环的同步任务
+        new Promise((resolve, reject) => {
+            resolve(1);
+            console.log(2);
+        }).then(r => {
+            console.log(r);
+        })
 
+        // 一般来说，调用resolve或reject以后，Promise 的使命就完成了
+        // 后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面
+        // 所以，最好在它们前面加上return语句
+        new Promise((solve, reject) => {
+            return solve(1);
+            // 后面的语句不再执行
+            console.log(2);
+        })
     </script>
 </body>
 
