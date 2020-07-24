@@ -61,6 +61,40 @@
                 return 'done' + value;
             })
         }
+
+        // 将thenable对象转换为promise对象
+        let promise = Promise.resolve($.ajax('/json/comment.json'));
+        Promise.then(
+            (value) => console.log(value)
+        )
+
+        // Promise的异步操作
+        let promise = new Promise((resolve, reject) => {
+            console.log('inner promise');
+            resolve(42);
+        })
+
+        promise().then(
+            (value) => console.log(value)
+        )
+
+        console.log('outer promise');
+        //inner promise
+        //outer promise
+        //42
+
+        function onReady(fn) {
+            let readyState = new document.readyState;
+            if (readyState === 'interactive' || readyState === 'complete') {
+                fn()
+            } else {
+                window.addEventListener('DOMContentLoaded', fn)
+            }
+        }
+        onReady(function () {
+            console.log('DOM fully loaded and parsed');
+        })
+        console.log('==Starting==');
     </script>
 </body>
 
