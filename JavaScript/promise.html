@@ -235,7 +235,18 @@
             .then(() => { })
             .finally(server.stop)
 
+        // Promise.all用于将多个Promise实例包装成新Promise实例
+        // promise包含六个promises实例
+        // 只有这 6 个实例的状态都变成fulfilled，或者其中有一个变为rejected，才会调用Promise.all方法后面的回调函数
+        const promises = [2, 3, 5, 7, 11, 13].map(id => {
+            return getJSON('/post/' + id + ".json");
+        })
 
+        Promise.all(promises).then(posts => {
+            //...
+        }).catch(reason => {
+            //...
+        })
     </script>
 </body>
 
