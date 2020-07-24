@@ -161,12 +161,21 @@
         )
 
         // 被catch捕获的两种情况
-
+        // 异步抛出错误，状态变为rejected
+        // then运行中抛出错误
         getJSON('/posts.json').then(
             post => getJSON(post.commonURL)
         ).catch(
             error => console.log('发生错误！', error)
         )
+
+        p.then(val => console.log('fulfilled: ', val))
+            .catch((err) => console.log('rejected: ', err))
+        // 等同于
+        p.then((val) => console.log('fulfilled, ', val))
+            .then(null, (err) => console.log('rejected:', err))
+
+
     </script>
 </body>
 
