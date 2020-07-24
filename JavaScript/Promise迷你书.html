@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise的resolve指定要传递的参数
+        // then方法中编写接收参数后，具体执行的代码
+        function asyncFunction() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('Hello');
+                }, 100)
+            })
+        }
+
+        asyncFunction().then((value) => {
+            console.log(value);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+        function getURL(URL) {
+            return new Promise((resolve, reject) => {
+                let req = new XMLHttpRequest();
+                req.open('GET', URL, true);
+                req.onload = () => {
+                    if (req.status === 200) {
+                        resolve(req.responseText);
+                    } else {
+                        reject(new Error(req.statusText));
+                    }
+                }
+
+                req.onerror = () => {
+                    reject(new Error(req.statusText));
+                };
+                req.send();
+            })
+        }
+
+        var URL = "http://httpbin.org/status/500";
+        getURL(URL).then(
+            onFulfilled = (value) => console.log(value)
+        ).catch(
+            onRejected = (err) => console.log(err)
+        )
+
+        Promise.resolve(42).then(
+            (value) => console.log(value)
+        )
+
+        let taskName = "task 1"
+        function asyncTask(taskName) {
+            return Promise.resolve(taskName).then((value) => {
+                return 'done' + value;
+            })
+        }
+    </script>
+</body>
+
+</html>
