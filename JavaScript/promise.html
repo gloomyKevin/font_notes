@@ -215,6 +215,21 @@
         promise
             .then((val) => console.log(val))
             .catch((err) => console.log(err))
+
+        // 一般不在then()方法内定义reject状态的回调函数
+        // 总使用catch方法
+        // bad
+        promise.then(
+            data => { },
+            error => { }
+        )
+
+        // good
+        promise.then(
+            data => { }
+        ).catch(
+            err => { }
+        )
     </script>
 </body>
 
