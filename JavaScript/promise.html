@@ -175,7 +175,46 @@
         p.then((val) => console.log('fulfilled, ', val))
             .then(null, (err) => console.log('rejected:', err))
 
+        // 这种写法
+        const promise = new Promise((resolve, reject) => {
+            throw new Error('test');
+        })
 
+        promise.catch((err) => {
+            console.log(err);
+        })
+
+        // 等同于情况一
+        // reject()相当于抛出错误
+        const promise = new Promise((resolve, reject) => {
+            try {
+                throw new Error('test');
+            } catch (e) {
+                reject(e);
+            }
+        })
+        promise.catch((err) => {
+            console.log(err);
+        })
+
+        // 等同于情况二
+        // reject()相当于抛出错误
+        const promise = new Promise((resolve, reject) => {
+            reject(new Error('test'));
+        })
+        promise.catch((err) => {
+            console.log(err);
+        })
+
+        // 如果Promise状态已经变为resolved，则再抛出错误为无效
+        // promise状态一旦改变，则永久保持不会再变
+        const promise = new Promise((resolve, reject) => {
+            resolve('OK');
+            throw new Error('test');
+        })
+        promise
+            .then((val) => console.log(val))
+            .catch((err) => console.log(err))
     </script>
 </body>
 
