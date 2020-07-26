@@ -96,7 +96,6 @@
         })
         console.log('==Starting==');
 
-        // promise chain中传递参数
         // TaskA → onRejected → FinalTask
         // Task B 是不会被调用
         function taskA() {
@@ -122,9 +121,36 @@
             .then(taskB)
             .catch(onRejected)
             .then(finalTas)
-            // Task A
-            // Error: throw Task A
-            // Final Task
+        // Task A
+        // Error: throw Task A
+        // Final Task
+
+        // promise chain通过return传递参数
+        function doubleUp(value) {
+            return value * 2;
+        }
+
+        function increment(value) {
+            return value + 1;
+        }
+
+        function output(value) {
+            console.log(value);
+        }
+
+        let promise = new Promise(1);
+        promise
+            .then(increment)
+            .then(doubleUp)
+            .then(output)
+            .catch((err) => {
+                throw new Error(err)
+            })
+
+        // 每次调用then返回一个新创建的promise对象
+
+        // 通过回调进行多个异步调用
+
     </script>
 </body>
 
