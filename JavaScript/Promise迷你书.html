@@ -150,7 +150,45 @@
         // 每次调用then返回一个新创建的promise对象
 
         // 通过回调进行多个异步调用
+        function getURLCallback(URL, callback) {
 
+        }
+
+        function jsonParse(callback, error, value) {
+
+        }
+
+        var request = {
+
+        }
+
+        function allRequest(requests, callback, results) {
+
+        }
+
+        function main(callback) {
+
+        }
+
+        main()
+
+        // Promise.race
+        function timerPromisefy(delay) {
+            return new Promise((resolve, reject) => {
+                setTimeout((delay) => {
+                    resolve(delay)
+                }, delay)
+            })
+        }
+
+        Promise.race([
+            timerPromisefy(1),
+            timerPromisefy(32),
+            timerPromisefy(64),
+            timerPromisefy(128)
+        ]).then((value) => {
+            console.log(value);
+        })
     </script>
 </body>
 
