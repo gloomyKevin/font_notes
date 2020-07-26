@@ -95,6 +95,36 @@
             console.log('DOM fully loaded and parsed');
         })
         console.log('==Starting==');
+
+        // promise chain中传递参数
+        // TaskA → onRejected → FinalTask
+        // Task B 是不会被调用
+        function taskA() {
+            console.log('Task A');
+            throw new Error('throw task A');
+        }
+
+        function taskB() {
+            console.log('task B');
+        }
+
+        function onRejected(error) {
+            console.log(error);
+        }
+
+        function finalTest() {
+            console.log('final task');
+        }
+
+        let promise = Promise.resolve();
+        promise
+            .then(taskA)
+            .then(taskB)
+            .catch(onRejected)
+            .then(finalTas)
+            // Task A
+            // Error: throw Task A
+            // Final Task
     </script>
 </body>
 
