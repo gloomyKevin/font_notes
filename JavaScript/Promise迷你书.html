@@ -255,6 +255,8 @@
         promise.then(() => {
             return Promise.reject(new Error("this promise is rejected"))
         }).catch(onRejected)
+
+        // 使用Promise.race实现超时机制
     </script>
 </body>
 
