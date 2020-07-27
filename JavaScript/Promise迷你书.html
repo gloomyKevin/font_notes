@@ -227,7 +227,34 @@
             console.log(err);
         })
 
+        // then中使用reject
+        // 设置情景
+        var promise = Promise.resolve();
+        promise().then((value) => {
+            setTimeout(() => {
+                // 一段时间还没处理完成进行reject
+            }, 1000)
+            somethingHardWork();
+        }).catch((err) => {
+            // 超时错误
+        })
 
+        // 在then中返回promise对象
+        // 根据其状态，可以确定下一个then注册的回调函数中onFulFilled和onRejected状态
+        // 实现：在then中不使用throw也能reject处理
+        var promise = Promise.resolve();
+        promise().then(() => {
+            var retPromise = new Promise((resolve, reject) => {
+                reject(new Error("this promise is rejected"))
+            })
+            return rePromise
+        }).then((onFulFilled, onRejected))
+
+        // 再优化
+        var promise = new Promise.resolve();
+        promise.then(() => {
+            return Promise.reject(new Error("this promise is rejected"))
+        }).catch(onRejected)
     </script>
 </body>
 
