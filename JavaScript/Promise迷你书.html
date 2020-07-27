@@ -69,12 +69,12 @@
         )
 
         // Promise的异步操作
-        let promise = new Promise((resolve, reject) => {
+        let promise2 = new Promise((resolve, reject) => {
             console.log('inner promise');
             resolve(42);
         })
 
-        promise().then(
+        promise2().then(
             (value) => console.log(value)
         )
 
@@ -115,8 +115,8 @@
             console.log('final task');
         }
 
-        let promise = Promise.resolve();
-        promise
+        let promise3 = Promise.resolve();
+        promise3
             .then(taskA)
             .then(taskB)
             .catch(onRejected)
@@ -138,8 +138,8 @@
             console.log(value);
         }
 
-        let promise = new Promise(1);
-        promise
+        let promise4 = new Promise(1);
+        promise4
             .then(increment)
             .then(doubleUp)
             .then(output)
@@ -173,6 +173,7 @@
         main()
 
         // Promise.race
+        // 只要有一个promise对象进入FulFilled或rejected就继续（区别于Promise.all）
         function timerPromisefy(delay) {
             return new Promise((resolve, reject) => {
                 setTimeout((delay) => {
@@ -189,6 +190,44 @@
         ]).then((value) => {
             console.log(value);
         })
+
+        // 第一个promise变为onFulFilled后，它之后的promise是否在继续运行
+        let winnerPromise = new Promise((resolve) => {
+            setTimeout((value) => {
+                console.log('this is winner');
+                resolve('this is winner');
+            }, 4)
+        })
+
+        let loserPromise = new Promise((resolve) => {
+            setTimeout((value) => {
+                console.log('this is loser');
+                resolve('this is loser');
+            })
+        })
+
+        Promise.race([winnerPromise, loserPromise]).then((value) => {
+            console.log(value);
+        })
+
+        // 使用reject而非throw
+        // bad
+        var promise = new Promise((resolve, reject) => {
+            throw new Error("massage");
+        })
+        promise.catch((err) => {
+            console.log(err);
+        })
+
+        // good
+        var promise = new Promise((resolve, reject) => {
+            reject(new Error("error"))
+        })
+        promise.catch((err) => {
+            console.log(err);
+        })
+
+
     </script>
 </body>
 
