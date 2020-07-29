@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 1;
+        let b = 1;
+        let c = 1;
+        // 等同于
+        let [a, b, c] = [1, 2, 3]
+
+        // 等号右边为不可遍历结构，则报错
+        // 以下右边的值，转为对象后不具有Iterator接口
+        let [foo] = 1;
+        let [foo] = false;
+        let [foo] = NaN;
+        let [foo] = undefined;
+        let [foo] = null;
+        // 右边本身不具有Iterator接口
+        let [foo] = {};
+
+        // Set结构也可以使用数组的解构赋值
+        let [x, y, z] = new Set(['a', 'b', 'c']);
+        x
+
+        // 使用Generator函数解构赋值
+
+        // 解构赋值允许指定默认值
+        let [foo = true] = []
+        foo //true
+
+        let [x, y = 'b'] = ['a'];
+        let [x, y = 'b'] = ['a', undefined]
+
+        // 如果默认值为表达式，则表达式为惰性求值，用到时才会求值
+        function f() {
+            console.log('aaa');
+        }
+        let [x = f()] = [1]
+        //等同于
+        // 不理解
+        let x;
+        if ([1][0] === undefined) {
+
+        }
+    </script>
+</body>
+
+</html>

@@ -104,6 +104,14 @@
             const MAX = 5
         }
         MAX
+
+        // var和function声明的全局变量依然是顶层对象的属性
+        var a = 1;
+        window.a    // 1
+
+        // let、const、class声明的全局变量不属于顶层对象属性
+        let b = 1;
+        window.b    // undefined
     </script>
 </body>
 
