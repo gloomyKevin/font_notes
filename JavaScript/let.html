@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            let a = 1;
+            var b = 2;
+        }
+        a
+        b
+
+        // 对比，for语句中var变量的this指向问题
+        // 参考饥人谷方应杭
+        for (let i = 0; i < 10; i++) {
+            //...
+        }
+        console.log(i);
+
+        var a = [];
+        for (var i = 0; i < 10; i++) {
+            a[i] = function () {
+                console.log(i);
+            }
+        }
+        a[6]()
+
+        // let声明的变量i，只在本轮有效
+        // 每一次循环的i都是新变量
+        var a = [];
+        for (let i = 0; i < 10; i++) {
+            a[i] = function () {
+                console.log(i);
+            }
+        }
+        a[6]()
+
+        // 设置循环变量的部分是父作用域
+        // 循环体内部是单独子作用域
+        // 两个变量i有各自单独作用域
+        for (let i = 0; i < 3; i++) {
+            let i = 'abc';
+            console.log(i);
+        }
+
+        // 在let命令声明变量前，该变量不可用
+        // 称为暂时性死区（TDZ）
+        if (true) {
+            // TDZ开始
+            tmp = 'abc';
+            console.log(tmp);
+
+            let tmp; //TDZ结束
+            console.log(tmp);
+
+            tmp = 123;
+            console.log(123);
+        }
+
+        // 较隐蔽的死区
+        // x=y时，y还没声明
+        function Bar(x = y, y = 2) {
+            return [x, y]
+        }
+        Bar();
+
+        // 修改后,正确
+        function Bar(x = 2, y = x) {
+            return [x, y]
+        }
+        Bar();
+    </script>
+</body>
+
+</html>
