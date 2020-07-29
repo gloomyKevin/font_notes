@@ -75,6 +75,27 @@
             return [x, y]
         }
         Bar();
+
+        // 没有块级作用域时
+        // 内层变量覆盖外层变量
+        var tmp = new Date();
+        function f() {
+            console.log(tmp);
+            if (false) {
+                var tmp = 'hello world';
+            }
+        }
+        f();//undefined
+
+        // 用于计数的循环变量泄露为全局变量
+        var s = 'hello';
+        for (var i = 0; i < s.length; i++) {
+            console.log(s[i]);
+        }
+
+        console.log(i);//5
+
+
     </script>
 </body>
 
