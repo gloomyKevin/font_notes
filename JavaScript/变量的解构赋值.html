@@ -47,8 +47,36 @@
         // 不理解
         let x;
         if ([1][0] === undefined) {
-
+            x = f();
+        } else {
+            x = [1][0];
         }
+
+        // 默认值可以引用解构赋值的其它变量
+        let [x = 1, y = x] = [];
+
+        // 对象的解构赋值
+        let { foo, bar } = { foo: 'aaa', bar: 'bbb' }
+
+        // 对象的属性没有次序，变量必须与属性同值才能取到正确值
+        let { bar, foo } = { foo: 'aaa', bar: 'bbb' }
+        foo //aaa
+        bar //bbb
+        //结构失败，则变量的值为undefined
+        let { baz } = { foo: 'aaa', bar: 'bbb' }
+        baz //undefined
+
+        //变量名和属性名不一致时的写法
+        let { foo: baz } = { foo: 'aaa', bar: 'bbb' }
+        baz //'aaa'
+
+        let obj = { first: 'hello', last: 'world' }
+        let { first: f, last: l } = obj;
+        f   //hello
+        l   //world
+
+        // 对象的解构赋值，其实是对下面形式的简写
+        let { foo: foo, bar: bar } = { foo: 'aaa', bar: 'bbb' }
     </script>
 </body>
 
