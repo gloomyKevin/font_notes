@@ -47,6 +47,8 @@
         // 不理解
         let x;
         if ([1][0] === undefined) {
+
+
             x = f();
         } else {
             x = [1][0];
@@ -77,6 +79,45 @@
 
         // 对象的解构赋值，其实是对下面形式的简写
         let { foo: foo, bar: bar } = { foo: 'aaa', bar: 'bbb' }
+
+        // 属性的简洁表示方法
+        const foo = 'bar'
+        const baz = { foo }
+        baz //{foo:'bar'}
+        // 等同于
+        const baz = { foo: foo }
+
+        // 综合理解
+        // foo是匹配的模式，baz才是变量
+        // 真正被赋值的是变量baz，而非模式foo
+        let { foo: baz } = { foo: 'aaa', bar: 'bbb' }
+        baz;    //'aaa'
+        foo;    //error: foo is not defined
+
+        // 解构用于嵌套结构的对象
+        let obj = {
+            p: [
+                'Hello',
+                { y: 'World' }
+            ]
+        };
+        let { p: [x, { y }] } = obj;
+        x   //'Hello'
+        y   //World
+
+        let obj = {
+            p: [
+                'Hello',
+                { y: 'World' }
+            ]
+        }
+        let { p, p: { p: [x, { y }] } }
+
+        //函数参数的解构赋值
+        function add([x, y]) {
+            return x + y;
+        }
+        add([1, 2]);
     </script>
 </body>
 
