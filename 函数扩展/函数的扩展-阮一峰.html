@@ -36,6 +36,26 @@
             let x = 1;  //error
             const x = 2;    //error
         }
+
+        //使用默认参数时，函数不能有同名函数
+        function foo(x, x, y) {
+
+        }
+
+        function foo(x, x, y = 1) {
+
+        }// SyntaxError: Duplicate parameter name not allowed in this context
+
+        // 参数默认值可以与解构赋值默认值结合使用
+        function foo({ x, y = 5 }) {
+            console.log(x, y);
+        }
+
+        foo({});
+        foo({ y: 1 });
+        foo({ x: 1, y: 2 });
+        foo();
+
     </script>
 </body>
 
