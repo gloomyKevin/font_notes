@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es6之前为函数参数指定默认值的方法
+        function log(x, y) {
+            y = y || 'World';
+            console.log(x, y);
+        }
+
+        log('Hello')
+
+        // ES6写法
+        function log(x, y = 'World') {
+            console.log(x, y);
+        }
+
+        log('Hello')
+
+        function P(x = 0, y = 0) {
+            this.x = x;
+            this.y = y;
+        }
+        const p = new P();
+        console.log(p);
+
+        // 参数变量为默认声明，不能用let或const再次声明
+        function f(x = 5) {
+            let x = 1;  //error
+            const x = 2;    //error
+        }
+    </script>
+</body>
+
+</html>
