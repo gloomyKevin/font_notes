@@ -56,6 +56,35 @@
         foo({ x: 1, y: 2 });
         foo();
 
+        // 函数length属性
+        // 指定默认值后，length返回没有指定默认值的参数个数
+        (function (a) { }).length;
+        (function (a = 10) { }).length;
+        (function (a, b, c = 10) { }).length;
+
+        // 深入理解length 纠正错误理解
+        (function (...args) { }).length;
+        (function (a = 1, b, c) { }).length;
+        (function (a, b = 1, c) { }).length;
+
+        // rest参数
+        // arguments弊端：转换为数组
+        function add(...values) {
+            let sum = 0;
+            for (let val of values) {
+                sum += val;
+            }
+            return sum;
+        }
+        // 函数可以传入任意数目的参数
+        add(2, 5, 3);
+        // arguments变量写法
+        function sortNumbers() {
+            return Array.prototype.slice.call(arguments).sort();
+        }
+        // rest参数写法
+        const sortNumbers = (...numbers) => numbers.sort();
+        // 使用rest改写数组的push方法
     </script>
 </body>
 
