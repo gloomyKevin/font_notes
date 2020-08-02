@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 箭头函数直接返回一个对象，需要在对象外加括号
+        // 错误写法
+        let getTmpItem = id => { id: id, name: "temp" };
+        // 正确写法
+        let getTmpItem = id => ({ id: id, name: "temp" });
+        // 可运行但结果错误
+        let foo = () => { id: id }
+        foo()
+
+        // 如果只有一行语句，且不需返回值，可不写大括号
+        let fn = () => void doesNotReturn();
+
+        // 箭头函数与解构赋值
+        // 箭头函数中隐去this
+        const full = ({ first, last }) => full + '' + 'last'
+        // 等同于
+        function full(person) {
+            return person.first + '' + person.last;
+        }
+
+        // 简化回调函数
+        [1, 2, 3].map(function (x) {
+            return x * x;
+        })
+        // 简化后
+        [1, 2, 3].map = (x => x * x)
+
+        var result = values.sort(function (a, b) {
+            return a - b;
+        })
+        // 简化后
+        var result = values.sort((a, b) => a - b)
+
+        // rest参数与箭头函数
+        const numbers = (...num) => num;
+
+        // 注意点
+    </script>
+</body>
+
+</html>
