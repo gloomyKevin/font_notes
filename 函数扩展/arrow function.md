@@ -99,6 +99,7 @@ JavaScript设计箭头函数的原因
         array.map(n => n * n)
 ```
 
+    
 vue为什么不使用箭头函数
 
 因为vue依赖this的使用
