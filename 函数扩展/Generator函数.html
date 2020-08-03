@@ -73,6 +73,41 @@
         // next方法可携带一个参数,该参数被当成"上一个"yield表达式返回值
         // 深入理解yield表达式的返回值
 
+        function* consumer() {
+            console.log('1.${yield}');
+            console.log('2.${yield}');
+            return 'result';
+
+            let genObj = dataConsumer();
+
+            genObj.next();
+            genObj.next('a');
+            genObj.next('b');
+        }
+
+        // 想第一次调用next就输入值,可以在Generator外再包一层
+
+        // for...of...循环
+        // 自动遍历 Generator 函数运行时生成的Iterator对象
+        return语句
+        function* foo() {
+            yield 1;
+            yield 2;
+            yield 3;
+            return 4;
+        }
+
+        for (let v of foo) {
+            console.log(v);
+        }
+
+        // Generator函数和for...of循环,实现斐波那契数列
+        function* fibonacci() {
+            let [pre, curr] = [0, 1];
+            for (; ;) {
+
+            }
+        }
     </script>
 </body>
 
