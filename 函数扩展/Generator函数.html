@@ -105,7 +105,8 @@
         function* fibonacci() {
             let [pre, curr] = [0, 1];
             for (; ;) {
-
+                yield curr;
+                [pre, curr] = [curr, pre + curr];
             }
         }
     </script>
