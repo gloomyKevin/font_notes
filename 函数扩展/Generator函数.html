@@ -103,11 +103,16 @@
 
         // Generator函数和for...of循环,实现斐波那契数列
         function* fibonacci() {
-            let [pre, curr] = [0, 1];
+            let [pre, cur] = [0, 1];
             for (; ;) {
-                yield curr;
-                [pre, curr] = [curr, pre + curr];
+                yield cur;
+                [pre, cur] = [cur, pre + cur];
             }
+        }
+
+        for (let n of fibonacci()) {
+            if (n > 1000) break;
+            console.log(n);
         }
     </script>
 </body>
