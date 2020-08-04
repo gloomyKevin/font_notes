@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es6之前为函数参数指定默认值的方法
+        function log(x, y) {
+            y = y || 'World';
+            console.log(x, y);
+        }
+
+        log('Hello')
+
+        // ES6写法
+        function log(x, y = 'World') {
+            console.log(x, y);
+        }
+
+        log('Hello')
+
+        function P(x = 0, y = 0) {
+            this.x = x;
+            this.y = y;
+        }
+        const p = new P();
+        console.log(p);
+
+        // 参数变量为默认声明，不能用let或const再次声明
+        function f(x = 5) {
+            let x = 1;  //error
+            const x = 2;    //error
+        }
+
+        //使用默认参数时，函数不能有同名函数
+        function foo(x, x, y) {
+
+        }
+
+        // 重点理解
+        // 参数默认值的惰性求值
+        let x = 99;
+        function foo(p = x + 1) {
+            console.log(p);
+        }
+        foo();
+        x = 100;
+        foo();
+        // foo中不写参数,指定函数默认值的本质就是调用时不传参,而使用函数中的默认值
+
+        function foo(x, x, y = 1) {
+
+        }// SyntaxError: Duplicate parameter name not allowed in this context
+
+        // 参数默认值可以与解构赋值默认值结合使用
+        // 只使用对象的解构赋值
+        function foo({ x, y = 5 }) {
+            console.log(x, y);
+        }
+
+        foo({});
+        foo({ y: 1 });
+        foo({ x: 1, y: 2 });
+        // 如果调用时没提供参数,变量x和y不会生成,从而报错
+        foo();  // TypeError: Cannot read property 'x' of undefined
+        // !!!重点:使用函数参数的默认值
+        function foo({ x, y = 5 } = {}) {
+            console.log(x, y);
+        }
+        foo();
+
+        // 重点理解!双重默认值
+        function fetch(url, body = '')
+
+        // 函数length属性
+        // 指定默认值后，length返回没有指定默认值的参数个数
+        (function (a) { }).length;
+        (function (a = 10) { }).length;
+        (function (a, b, c = 10) { }).length;
+
+        // 深入理解length 纠正错误理解
+        (function (...args) { }).length;
+        (function (a = 1, b, c) { }).length;
+        (function (a, b = 1, c) { }).length;
+
+        // rest参数
+        // arguments弊端：转换为数组
+        function add(...values) {
+            let sum = 0;
+            for (let val of values) {
+                sum += val;
+            }
+            return sum;
+        }
+        // 函数可以传入任意数目的参数
+        add(2, 5, 3);
+        // arguments变量写法
+        function sortNumbers() {
+            return Array.prototype.slice.call(arguments).sort();
+        }
+        // rest参数写法
+        const sortNumbers = (...numbers) => numbers.sort();
+        // 使用rest改写数组的push方法
+    </script>
+</body>
+
+</html>
