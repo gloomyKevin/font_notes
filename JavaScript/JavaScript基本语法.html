@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      console.log(a);
+      var a = 1;
+
+      // 等同于
+      var a;
+      console.log(a);
+      a = 1;
+
+      //报错
+      console.log(b);
+      let b = 2;
+
+      let c;
+      console.log(c);
+      c = 3;
+
+      // 区块
+      {
+        var d = 1;
+      }
+      d;
+
+      top: for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          if (i === 1 && j === 1) break top;
+          console.log("i=" + i + ", j=" + j);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // obj为对象
+      var obj = {
+        //   foo为键名(成员名称),hello为键值(成员的值)
+        foo: "hello",
+        bar: "world",
+      };
+
+      //   等同于
+      var obj = {
+        //   foo为键名(成员名称),hello为键值(成员的值)
+        foo: "hello",
+        bar: "world",
+      };
+
+      //   键名又称属性
+      //   属性的值为函数,则称属性为方法
+      //   联系,es6方法的简写
+      var obj = {
+        p: function (x) {
+          return 2 * x;
+        },
+      };
+
+      //   链式引用
+      var o1 = {};
+      var o2 = { bar: "hello" };
+
+      o1.foo = o2;
+      o1.foo.bar;
+
+      //   属性的动态创建
+      var obj = {};
+      obj.x = 1;
+      console.log(obj.x);
+    </script>
+  </body>
+</html>

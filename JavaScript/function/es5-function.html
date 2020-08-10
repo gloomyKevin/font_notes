@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div></div>
     <script>
-        // 三种声明函数的方法
-        // function命令
-        function print(s) {
-            console.log(s);
-        }
+      // 三种声明函数的方法
+      // function命令
+      function print(s) {
+        console.log(s);
+      }
 
-        // 函数表达式，采用变量赋值
-        // 采用函数表达式声明函数时，function命令后面不带有函数名
-        let print = function (s) {
-            console.log(s);
-        }
+      // 函数表达式，采用变量赋值
+      // 采用函数表达式声明函数时，function命令后面不带有函数名
+      let print = function (s) {
+        console.log(s);
+      };
 
-        // 如果加上函数名，该函数名只在函数体内部有效，在函数体外部无效
-        let print = function x(s) {
-            console.log(s);
-        }
+      let print = (s) => {
+        console.log(s);
+      };
 
-        x;
-        print();
+      // 如果加上函数名，该函数名只在函数体内部有效，在函数体外部无效
+      let print = function x(s) {
+        console.log(s);
+      };
 
-        // 这种写法的用处有两个
-        // 一是可以在函数体内部调用自身
-        // 二是方便除错（除错工具显示函数调用栈时，将显示函数名，而不再显示这里是一个匿名函数）
-        // 因此，下面的形式声明函数也非常常见
-        let print = function f() { };
+      x;
+      print();
 
-        // function构造函数
-        // 非常不直观，基本不使用
+      // 这种写法的用处有两个
+      // 一是可以在函数体内部调用自身
+      // 二是方便除错（除错工具显示函数调用栈时，将显示函数名，而不再显示这里是一个匿名函数）
+      // 因此，下面的形式声明函数也非常常见
+      let print = function f() {};
 
+      // function构造函数
+      // 非常不直观，基本不使用
     </script>
-</body>
-
+  </body>
 </html>
