@@ -20,7 +20,60 @@
         // 等同于
         var arr = Array(2);
 
+        // 不建议使用Array()生成新数组,应该直接采用数组字面量
+        // bad
+        var arr = new Array(1, 2);
+        // good
+        var arr = new Array[1, 2];
 
+        // 静态方法
+        // isArray()
+        // typeof运算符只能显示数组的类型是Object，而Array.isArray方法可以识别数组
+        var arr = [1, 2, 3]
+
+        typeof arr // "object"
+        Array.isArray(arr) // true
+
+        // 实例方法
+
+        // join
+
+
+        // !!!!import map()
+        var numbers = [1, 2, 3].map(function (n) {
+            return n + 1;
+        })
+        // [2, 3, 4]
+        numbers
+        // [1, 2, 3]
+
+        [1, 2, 3].map(ele, index, arr){
+            return ele * index;
+        }
+        // [0, 2, 6]
+
+        // map方法还可以接受第二个参数，用来绑定回调函数内部的this变量
+
+        // forEach()
+        function log(ele, index, arr) {
+            console.log('[' + index + ']=' + element);
+        }
+
+        [2, 5, 9].forEach(log);
+        // [0] = 2
+        // [1] = 5
+        // [2] = 9
+
+        // filter()
+        // 过滤数组成员，满足条件的成员组成一个新数组返回
+        [1, 2, 3, 4, 5].filter(function (ele) {
+            return (ele > 3);
+        })
+
+        var arr = [0, 1, 'a', false];
+
+        arr.filter(Boolean)
+        // [1, "a"]
     </script>
 </body>
 
