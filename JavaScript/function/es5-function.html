@@ -86,6 +86,21 @@
       var x = 5;
     }
     console.log(x);
+
+    // 函数内部的变量提升
+    function foo(x) {
+      if (x > 100) {
+        var temp = x - 100;
+      }
+    }
+
+    // 等同于
+    function foo(x) {
+      var temp;
+      if (x > 100) {
+        temp = x - 100;
+      }
+    }
   </script>
 </body>
 

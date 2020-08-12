@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Array也是一个构造函数
+        var arr = new Array(2);
+        arr.length; // 2
+        arr; // [empty*2]
+
+        // 未使用new,结果也一样
+        // 考虑语义性,以及与其它构造函数用户保持一致,应该加上new
+        var arr = new Array(2);
+        // 等同于
+        var arr = Array(2);
+
+
+    </script>
+</body>
+
+</html>
