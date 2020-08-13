@@ -8,7 +8,40 @@
 </head>
 
 <body>
+    <script>
+        let hd = [];
+        let hd_obj = {};
+        console.log(typeof hd);
+        console.log(typeof hd_obj);
+        // 两个都显示为object
+        // 可以用数组的静态方法isArray
+        console.log(Array.isArray(hd));
+        // 一般通用方法:无法区分时,使用instanceof在原型链上查找
+        console.log(hd instanceof Array);
+        console.log(hd_obj instanceof Array);
 
+        function user() { }
+        let kevin = new user();
+        console.log(kevin instanceof user);
+
+        // 模板字面量
+        function showLiteral() {
+            return "gloomyKevin.com";
+        }
+        let literal = `www.${showLiteral()}`;
+        console.log(literal);
+
+        // 模板字面量的嵌套使用
+        let lessons = [
+            { title: "媒体查询响应式布局" },
+            { title: "flex布局" },
+            { title: "grid栅格布局" }
+        ];
+
+        function template() {
+            return ``
+        }
+    </script>
 </body>
 
 </html>
