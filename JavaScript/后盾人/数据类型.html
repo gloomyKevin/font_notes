@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div></div>
     <script>
         let hd = [];
         let hd_obj = {};
@@ -39,8 +45,48 @@
         ];
 
         function template() {
-            return ``
+            return `
+            <ul>${lessons.map(items => `<li>${items.title}</li>`).join("")}</ul>
+            `
         }
+        document.body.innerHTML = template();
+
+        // 标签模板及实例应用
+        let name = "kevin";
+        let webURL = "gloomykevin.com";
+        console.log(tag`用户名${name},网址是${webURL}.`);   // 不能正常输出
+        // function tag(strings, name, webURL) {
+        //     console.log(strings);
+        //     console.log(name);
+        //     console.log(webURL);
+        // }
+        // 或者写成rest参数
+        function tag(strings, ...rest) {
+            console.log(strings);
+            console.log(rest);
+        }
+
+        // 具体应用
+        let lessons2 = [
+            { title: "html", author: "MDN" },
+            { title: "css", author: "大漠" },
+            { title: "JavaScript", author: "阮一峰" }
+        ]
+
+        function template2() {
+            return `
+            <ul>${lessons2.map(items => links`<li>名称:${items.title}, 大牛:${items.author}</li>`).join("")}</ul>
+            `
+        }
+
+        function links(strings, ...res) {
+            // console.log(strings);
+            return strings.map((str, key) => {
+                return str + (res[key] ? res[key].replace('大漠', `<a href="https://www.google.com">大漠</a>`) : "");
+            })
+                .join("");
+        }
+        document.body.innerHTML += template2();
     </script>
 </body>
 
