@@ -16,6 +16,115 @@
         console.log(url);
 
         // 弱类型,无强类型约束
+        // 类型随值发生改变
+        var web2 = "kevin";
+        console.log(typeof web);
+        web2 = 99;
+        console.log(typeof web2);
+        web2 = {};
+        console.log(typeof web2);
+
+        // 变量提升,在代码预解析进行的处理
+        // 全局跳过不说
+        function foo() {
+            if (false) {
+                var web = "gloomyKevin"
+            }
+            console.log(web);
+        }
+        foo();
+
+        // let&const暂时性死区TDC
+        let web3 = "gloomyKevin3"
+        function bar() {
+            console.log(web3);
+        }
+        bar();
+
+        // 报错
+        let web4 = "gloomyKevin3"
+        function bar() {
+            let web4 = "gloomyKevin4";
+            console.log(web3);
+        }
+        bar();
+
+        // 全局污染
+        // 变量不声明直接复制使用,导致全局污染
+
+        // 块级作用域
+        var i = 99;
+        /* some codes */
+        for (var i = 0; i < 5; i++) {
+            console.log(i);
+        }
+        console.log(i);
+        // 1
+        // 2
+        // 3
+        // 4
+        // 5
+
+        // let的全局作用域
+        var i2 = 99;
+        /* some codes */
+        for (let i2 = 0; i < 5; i++) {
+            console.log(i);
+        }
+        console.log(i);
+
+        (function () {
+            var $ = (window.$ = {});
+            $.web = "gloomyKevin";
+            var url = "gloomyKevin.com";
+            $.getURL = function () {
+                return url;
+            }
+        }.bind(window)())
+        // console.log(url);   
+        console.log($.getURL());
+
+        // let的写法
+        // 同样的效果
+        {
+            var $ = (window.$ = {});
+            $.web = "gloomyKevin";
+            var url = "gloomyKevin.com";
+            $.getURL = function () {
+                return url;
+            }
+        };
+        // console.log(url);
+        console.log($.getURL());
+
+        // const不可声明的前提条件是在同一作用域
+        // 以下不会报错
+        const URL = "..."
+        function show() {
+            const URL = "...";
+            console.log(URL);
+        }
+        show();
+
+        const URL2 = "out-URL"
+        {
+            const URL2 = "inner-URL"
+            console.log(URL2);
+        }
+        console.log(URL2);
+        // 且值类型的引用可以修改值
+        const CONFIG = {};
+        CONFIG.url = "gloomyKevin";
+        console.log(CONFIG);   // {url: gloomyKevin}
+
+        var x = 1;
+        console.log(window.x);  // 1
+        // 如果不小心声明为已存在的属性
+        var screenLeft = 2;
+        console.log(window.screenLeft); // 2,原意失效
+        // let screenLeft = 3;
+        // console.log(window.screenLeft);
+        // console.log(screenLeft);
     </script>
 </body>
 
