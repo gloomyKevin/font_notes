@@ -9,6 +9,14 @@
 
 <body>
     <script>
+        // 数组为地址引用
+        // 以下两者会同时改变
+        let array = [1, 2, 3, 4, 5];
+        let array2 = array;
+        array2[1] = "kevin"
+        console.log(array);
+        console.log(array2);
+
 
     </script>
 </body>
