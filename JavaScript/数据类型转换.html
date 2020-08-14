@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Number()
+        Number(324);
+        Number('324');
+
+        // 的规则是，Number方法的参数是对象时，将返回NaN
+        // 除非是包含单个数值的数组
+        Number({ a: 1 }) // NaN
+        Number([1, 2, 3]) // NaN
+        Number([5]) // 5
+    </script>
+</body>
+
+</html>

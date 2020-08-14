@@ -143,9 +143,91 @@
         function outStrictShow() {
             site = "gloomyKevin.com";
         }
-
         outStrictShow();
 
+        // 字符串截取
+        // 通过 方法 或 正则表达式
+        let str = "slice-test";
+
+        // slice(起始位置, 结束位置),参数可以为负数,即从后面开始截取
+        console.log(str.slice(-3, -1));
+
+        // 第一个参数可为负数,第二个如果为负数,相当于0
+        console.log(str.substring(-2, -1));
+
+        // 第一个参数指定位置,第二个参数指定数量
+        console.log(str.substr(-1, 2));
+
+        // 检索字符串
+
+        // 字符串替换标题关键词
+        const word = ["css", "js"];
+        const string = "这是一段同时包含css和js的文字"
+
+        // 电话号码模糊处理
+        function phone(number, len = 3) {
+            return String(number).slice(0, len * -1) + "*".repeat(len);
+        }
+        console.log(phone("13970856725", 3));
+
+        // 类型转换
+        const str_connect = "99";
+        console.log(typeof str_connect);
+        console.log(str_connect + 78);  // 9978
+        console.log(str_connect * 1 + 78);  // 177
+
+        // 布尔的隐式转换
+        // 正常字面量方法
+        let flag = true;
+        if (flag) { }
+
+        // 时间戳
+        // 声明对象
+        const date = new Date();
+        console.log(date);
+        console.log(typeof date);
+
+        // 声明字符串
+        const date2 = Date();
+        console.log(date2);
+        console.log(typeof date2);
+
+        // 直接获取时间戳
+        const timestamp = Date.now();
+        console.log(timestamp); // 1597397993790
+
+        // 计算脚本执行时间
+        // 开始时间
+        const start = Date.now();
+        // 随便写一个操作
+        for (let i = 0; i < 20000; i++) { }
+        // 结束时间
+        const end = Date.now();
+        console.log((end - start) / 1000 + '秒');
+
+        // 使用console提供的脚本计算方式
+        console.time("for");
+        console.timeEnd("for")
+
+        const date3 = new Date("1990-9-22 3:22:18");
+        const date4 = new Date(1990, 9, 22, 3, 22, 18)
+        console.log(date3);
+        console.log(date4);
+
+        const param = [1990, 9, 22, 3, 22, 18];
+        const date5 = new Date(...param);
+        console.log(date5);
+
+        // 标准时间iso转换为时间戳
+        const iso_date = new Date("1990-9-22 3:22:18");
+        console.log(iso_date * 1);
+        console.log(Number(iso_date));
+        console.log(iso_date.valueOf());
+        console.log(iso_date.getTime());
+
+        // 时间戳转化为标准时间iso
+        const timestamp2 = iso_date.valueOf();
+        console.log(new Date(timestamp2));
     </script>
 </body>
 
