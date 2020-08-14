@@ -17,6 +17,16 @@
         console.log(array);
         console.log(array2);
 
+        // 再次联系之前的知识
+        // 值引用报错
+        const name = 3;
+        name = 5;
+
+        // 地址引用不会报错
+        const arr = [1, 2];
+        arr[1] = 99;
+        console.log(arr);
+
 
     </script>
 </body>
