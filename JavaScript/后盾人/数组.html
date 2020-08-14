@@ -19,15 +19,25 @@
 
         // 再次联系之前的知识
         // 值引用报错
-        const name = 3;
-        name = 5;
+        // const name = 3;
+        // name = 5;
 
         // 地址引用不会报错
         const arr = [1, 2];
         arr[1] = 99;
         console.log(arr);
 
+        // 使用Array.of()代替Array()
+        let cms = new Array(3);
+        console.log(cms); // [, , ,]
 
+        let cms2 = Array.of(3);
+        console.log(cms2); // [3]
+
+        let str = "gloomykevin";
+        console.log(Array.from(str));
+        // es5写法
+        console.log([].slice.call(str));
     </script>
 </body>
 
