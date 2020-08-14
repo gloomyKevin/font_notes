@@ -229,7 +229,24 @@
 
 
         // 封装日期格式化函数
+        function date(date, dateFormat = 'yyyy-mm-hh-ss') {
+            config = {
+                YYYY: date.getFullYear(),
+                MM: date.getMonth(),
+                DD: date.getDate(),
+                HH: date.getHOurs(),
+                MM: date.getMinutes(),
+                SS: date.getSeconds()
+            }
 
+            for (const key in config) {
+                dateFormat = dateFormat.replace(key, config[key]);
+            }
+
+            return dateFormat;
+        }
+        // 第二个参数为自定义
+        console.log(dateFormat(new Date(), "YYYY年MM月DD日"));
     </script>
 </body>
 
