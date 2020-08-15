@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>hello</div>
+    <div>world</div>
+    <script>
+        // Array.from()
+        // 样例一,操作dom节点
+        let doms = document.querySelectorAll("div");
+        console.log(Array.from(doms, (item) => item.innerHTML));
+        // 样例三
+        function typesOf(...rest) {
+            return Array.from(rest, (item) => typeof item)
+        }
+        console.log(typesOf([], {}, 11));
+    </script>
+</body>
+
+</html>
