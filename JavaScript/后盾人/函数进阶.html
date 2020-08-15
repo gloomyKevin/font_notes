@@ -8,7 +8,52 @@
 </head>
 
 <body>
+    <script>
+        // 传统方法
+        // let str = new String('kevin');
+        // 简便方法
+        // let str = 'kevin';
 
+        // 函数也是对象,故类比
+        // 声明函数
+        // 不推荐
+        // let func = new Function("title", "console.log(title)");
+
+        // 推荐,采用字面量声明
+
+        // 使用这种方式创建时, 会默认压入window对象
+        function func1(title) {
+            console.log(title);
+        }
+        func1("hello");
+        console.log(window.func1);
+        window.func1();
+
+        let func2 = function (title) {
+            console.log(title);
+        }
+        func2("world");
+
+        // 将匿名函数赋值给对象属性
+        let user = {
+            name: null,
+            setUsername(name) {
+                this.name = name;
+            },
+            getUsername() {
+                return this.name
+            }
+        };
+        user.setUsername("kevin");
+        console.log(user.getUsername());
+
+        // 匿名函数
+        // 函数的变量提升问题
+        hd();
+        var hd = function () {
+            console.log(kevin);
+        }
+    </script>
 </body>
 
 </html>
