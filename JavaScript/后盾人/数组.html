@@ -61,9 +61,9 @@
         });
 
         // 结合解构赋值
-        const [...test] = "hello";
+        const [...test1] = "hello";
         // 等同于
-        const [...test] = ['h', 'e', 'l', 'l', 'o'];
+        const [...test2] = ['h', 'e', 'l', 'l', 'o'];
 
         // 出栈,入栈,填充
 
@@ -73,11 +73,28 @@
 
         // 移动数组的函数
         function move(arr, move, to) {
-
-            arr.splice(move)
+            // 因为数组为地址引用,所以新建数组保证原数组不被修改
+            let newArr = [...arr];
+            let item = newArr.splice(move, 1);
+            newArr.splice(to, 0, item[0]);
+            return newArr;
         }
-        let array = [1, 2, 3, 4];
-        move(array, 1, 3);
+        let array3 = [1, 2, 3, 4];
+        console.log(move(array3, 1, 3));
+
+        // 查找
+        // 老方法indexOf,查找元素出现的位置
+        let arrSearch = [1, 2, 3, 4];
+        console.log(arrSearch.indexOf(2));
+        // 从右侧开始查找
+        console.log(arrSearch.lastIndexOf(3));
+
+        // includes查找字符串,返回值为布尔类型
+        // 手动实现includes
+        function includes(array, value) {
+            for (const value of array) { }
+        }
+        console.log(includes(arr, 2));
     </script>
 </body>
 
