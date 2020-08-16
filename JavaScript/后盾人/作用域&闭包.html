@@ -10,6 +10,21 @@
 <body>
     <script>
         // 环境与作用域
+
+        // 延伸函数生命周期
+        function hd() {
+            let n = 1;
+            return function sum() {
+                console.log(++n);
+            }
+            // sum();
+        }
+        let a = hd();
+        a();
+        a();
+        let b = hd();
+        b();
+        b();
     </script>
 </body>
 
