@@ -8,6 +8,9 @@
 </head>
 
 <body>
+    <button>
+        click this
+    </button>
     <script>
         // 传统方法
         // let str = new String('kevin');
@@ -22,6 +25,7 @@
         // 推荐,采用字面量声明
 
         // 使用这种方式创建时, 会默认压入window对象
+        // func1与func2的差异主要体现在变量提升
         function func1(title) {
             console.log(title);
         }
@@ -50,8 +54,197 @@
         // 匿名函数
         // 函数的变量提升问题
         hd();
+        function hd() {
+            console.log("kevin1");
+        }
         var hd = function () {
-            console.log(kevin);
+            console.log("kevin2");
+        };
+
+        // 函数参数与arguments
+        function func_filter(params) {
+            return params <= 3;
+        }
+
+        let arr_filter = [1, 2, 3, 4, 5, 6, 7].filter(func_filter);
+
+        // 递归
+        // 使用递归计算求和
+        function sum1(...args) {
+            console.log(args);
+            if (args.length == 0) {
+                return 0;
+            }
+            return args.pop() + sum1(...args)
+        }
+        console.log(sum1(1, 2, 3, 4));
+        // 优化
+        function sum2(...num) {
+            return num.length == 0 ? 0 : num.pop() + sum2(...num);
+        }
+        console.log(sum2(1, 2, 3, 4, 5, 7, 9)); //31
+        // 递归实现倒三角
+        // 反复练习
+        function triangle(...args) {
+            if (args == 0) {
+                return "";
+            }
+            document.write("*".repeat(args) + "<br/>")
+            triangle(--args);
+        }
+        triangle(5);
+
+        // 递归附加参数使用技巧
+        // 使用递归修改课程点击数
+        let lessons = [
+            {
+                title: "part 1",
+                click: 10
+            },
+            {
+                title: "part 2",
+                click: 20
+            },
+            {
+                title: "part 3",
+                click: 30
+            }
+        ];
+        // 使用递归
+        function change(lessons, num = 100, i = 0) {
+            if (i == lessons.length) {
+                return lessons;
+            }
+            lessons[i].click += num;
+            return change(lessons, num, ++i)
+        }
+        console.table(change(lessons))
+
+        // 使用map
+        // 理解map中的回调函数
+        lessons = lessons.map(function (item) {
+            lessons.click += 100;
+            return item;
+        })
+        console.table(lessons);
+
+        // 回调函数
+        // map值不发生改变的问题
+        let test = [1, 2, 3, 4];
+        test.map(function (item) {
+            item += 10;
+        })
+        console.table(test);
+
+        // 修改如下
+        // 根据索引直接改变原数组
+        let test2 = [1, 2, 3, 4];
+        test2.map(function (value, index, array) {
+            array[index] += 10;
+        })
+        console.table(test2);
+
+        // 函数与方法中的this
+        let edu = {
+            name: "kevin",
+            show() {
+                return this.name;
+            }
+        }
+        console.log(edu.show());
+
+        // 用对象举例
+
+
+        // 用构造函数举例
+        function User(name) {
+            this.name = name;
+            this.show = function () {
+                function render() {
+                    console.log(this);  // window
+                }
+                render();
+                return this.name;
+            }
+        }
+        let kevin = new User("kevin");
+        console.log(kevin.show());  // kevin
+
+        // es5中声明that = this的方式
+        let lessons2 = {
+            site: "kevin",
+            lists: ["js", "css", "mysql"],
+            show1() {
+                return this.lists.map(function (item) {
+                    console.log(this);  // window*3
+                });
+            },
+            show2() {
+                const that = this;
+                return this.lists.map(function (item) {
+                    return `${that.site}-${item}`;
+                })
+            }
+        }
+        console.log(lessons2.show1());  // [undefined, undefined, undefined]
+        console.log(lessons2.show2());  // ["kevin-js", "kevin-css", "kevin-mysql"]
+
+        // 或者,增加第二个参数
+        let lessons3 = {
+            site: "kevin",
+            lists: ["js", "css", "mysql"],
+            show() {
+                return this.lists.map(function (item) {
+                    return `${this.site}-${item}`;
+                }, this)
+            }
+        }
+        console.log(lessons3.show());
+
+        // 箭头函数带来的this变化
+        let lessons4 = {
+            site: "kevin",
+            lists: ["js", "css", "mysql"],
+            show() {
+                return this.lists.map((item) => {
+                    return `${this.site}-${item}`;
+                })
+            }
+        }
+        console.log(lessons4.show());
+
+        // 使用按钮来展示this变化
+        let Dom = {
+            site: "kevin",
+            bind() {
+                const button = document.querySelector("button");
+                console.log(button);
+                button.addEventListener('click', function () {
+                    console.log(this);  // window
+                })
+            },
+
+            bind2() {
+                const button = document.querySelector("button");
+                button.addEventListener("click", () => {
+                    console.log(this);  // 
+                })
+            },
+
+            // 同时指向dom对象和上下文对象
+            // 方法一,使用event.target
+            bind3() {
+                const button = document.querySelector("button");
+                button.addEventListener("click", (e) => {
+                    alert(this.site + e.target.innerHTML);
+                });
+            },
+
+            // 方法二,let that = this
+            // 方法三,handleEvent
+            bind4() {
+
+            }
         }
     </script>
 </body>
