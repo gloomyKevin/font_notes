@@ -10,6 +10,11 @@
 <body>
     <button>click this</button>
     <button>don't click that, click this</button>
+
+    <dt>选项1</dt>
+    <dd>面板1</dd>
+    <dt>选项2</dt>
+    <dd>面板2</dd>
     <script>
         // 传统方法
         // let str = new String('kevin');
@@ -293,6 +298,27 @@
 
         // 实现构造函数属性继承
 
+        // 制作显示隐藏面板
+        function panel(i) {
+            let dds = document.querySelectorAll("dd");
+            [...dds].map((item) => {
+                item.setAttribute("hidden", "hidden");
+            });
+            dds[i].removeAttribute("hidden")
+        }
+
+        // document.querySelectorAll("dt").forEach((dt, i) => {
+        //     dt.addEventListener("click", () => panel.call(null, i));
+        // });
+
+        // 报错,留作debug
+        let dts = document.querySelectorAll("dt");
+        [...dts].map((item) => {
+            let self = this;
+            item.addEventListener('click', function () {
+                panel.call(null, self);
+            })
+        })
     </script>
 </body>
 
