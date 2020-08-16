@@ -8,9 +8,8 @@
 </head>
 
 <body>
-    <button>
-        click this
-    </button>
+    <button>click this</button>
+    <button>don't click that, click this</button>
     <script>
         // 传统方法
         // let str = new String('kevin');
@@ -253,6 +252,46 @@
         // 构造函数与工厂模式
 
         // call apply
+        let foo = {
+            name: "fooName"
+        }
+
+        let bar = {
+            name: "barName"
+        }
+
+        function User_call(web, url) {
+            console.log(web + url + this.name);
+        }
+
+        User_call.call(foo, 'kevin', 'kevin.com');
+        User_call.apply(bar, ['kevin', 'kevin.com'])
+
+        // 以dom操作举例
+        function showDom() {
+            alert(this.innerHTML);
+        }
+
+        let doms = document.querySelectorAll("button");
+        // for (let i = 0; i < doms.length; i++) {
+        //     doms[i].addEventListener('click', (e) => {
+        //         showDom.call(e.target)
+        //     })
+        // }
+        [...doms].map((item) => {
+            item.addEventListener('click', (e) => {
+                showDom.call(e.target);
+            })
+        })
+
+        // 获取数组最大值
+        let arr_max = [1, 2, 3, 4, 5];
+        // 方法一,使用展开语法
+        console.log(Math.max(...arr_max));
+        // 方法二
+        console.log(Math.max.apply(Math, arr_max));
+
+        // 实现构造函数属性继承
 
     </script>
 </body>
