@@ -242,10 +242,18 @@
 
             // 方法二,let that = this
             // 方法三,handleEvent
-            bind4() {
-
+            handleEvent(e) {
+                console.log(this.site + e.target.innerHTML);
             }
+
+            // 嵌套分析
+            // 举例,外面添加foreach操作多个dom
         }
+
+        // 构造函数与工厂模式
+
+        // call apply
+
     </script>
 </body>
 
