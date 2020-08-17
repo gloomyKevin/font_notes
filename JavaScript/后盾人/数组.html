@@ -95,6 +95,18 @@
             for (const value of array) { }
         }
         console.log(includes(arr, 2));
+
+        // forEach
+        let lessons = [
+            { title: "html", author: "MDN" },
+            { title: "css", author: "大漠" },
+            { title: "JavaScript", author: "阮一峰" }
+        ];
+        lessons.forEach((item, index, lessons) => {
+            console.log(lessons);
+            console.log(this);
+            item.title.substr(0, 2)
+        })
     </script>
 </body>
 
