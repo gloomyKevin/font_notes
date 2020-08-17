@@ -83,18 +83,61 @@
         // console.log(other);
 
         // 展开语法的应用
-        function upload() {
-            let config = {
-                type: "*.jpeg",
-                size: 1000
-            };
-            console.log(config);
-        }
-        console.log(upload({}));
+        // function upload() {
+        //     let config = {
+        //         type: "*.jpeg",
+        //         size: 1000
+        //     };
+        //     console.log(config);
+        // }
+        // console.log(upload({}));
 
         // 解构赋值
-        let info = { name: "kevin", url: "kevin.com" };
+        // let info = { name: "kevin", url: "kevin.com" };
+        // let { name: n, url: u } = info;
+        // console.log(n);
 
+        // 如果属性名与变量名相同,则省略属性定义
+        // let { name, url } = { name: '后盾人', url: 'houdunren.com' };
+        // console.log(name); // 后盾人
+
+        // 函数返回值直接解构到变量
+        // function func() {
+        //     return {
+        //         name: "kevin",
+        //         url: "kevin.com"
+        //     }
+        // }
+        // let { name: n, url: u } = func();
+        // console.log(n);
+
+        // 嵌套解构
+        // let user = {
+        //     name: "kevin",
+        //     lesson: {
+        //         title1: "js",
+        //         title2: "react"
+        //     }
+        // };
+
+        // let { name, lesson, lesson: { title1 } } = user;
+        // console.log(name, lesson, title1);  // kevin {title1: "js", title2: "react"} js
+
+        // 结构默认值实现配置项合并
+        // function createElement(option) {
+        //     let {
+        //         width = '100px',
+        //         height = '100px',
+        //         backgroundColor = 'red'
+        //     } = option;
+
+        //     const h2 = document.createElement('h2');
+        //     h2.style.width = width;
+        //     h2.style.height = height;
+        //     h2.style.backgroundColor = backgroundColor;
+        //     document.body.appendChild(h2);
+        // }
+        // createElement({ backgroundColor: 'green' });
     </script>
 </body>
 
