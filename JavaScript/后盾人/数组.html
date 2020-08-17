@@ -102,11 +102,74 @@
             { title: "css", author: "大漠" },
             { title: "JavaScript", author: "阮一峰" }
         ];
+        // 循环操作中引用类型的技巧
+        // 使用for循环
+        for (let i = 0; i < lessons.length; i++) {
+            lessons[i].title = `kevin${lessons[i].title}`
+        }
+        console.table(lessons);
+
+        for (const value of lessons) {
+            // 注意,此处的value为引用类型,修改value会改变原数组的值
+            value.title = `kevin${value.title}`
+        }
+        console.table(lessons);
+
+        // 值引用类型不会改变原数组
+        let arr_test = [1, 2, 3, 4];
+        for (let value of arr_test) {
+            // 此时的value为值引用类型
+            value += 10;
+        }
+        console.log(arr_test);
+
+        let arr_obj = [{ n: 1 }, { n: 2 }];
+        for (let value of arr_obj) {
+            value.n += 10;
+        }
+        console.log(arr_obj);  // [{ n: 11 }, { n: 12 }]
+
+        // for...in的key也为引用类型
+        for (let key in lessons) {
+            lessons[key].title = `kevin${lessons[key].title}`
+        }
+        console.log(arr_obj);
+
         lessons.forEach((item, index, lessons) => {
             console.log(lessons);
             console.log(this);
             item.title.substr(0, 2)
         })
+
+        // foreach操作dom节点
+        let arr_map = ["kevin", "kevin.com"];
+        arr_map.map((value, index, arr_map) => {
+            console.log(arr_map);
+
+        })
+
+        // 一个基本常识,复制给变量之后,要改变值需要return
+        let map2 = arr_map2.map((value, index, arr_map) => {
+            value = `value${value}`;
+            return value
+        })
+        console.table(map2);
+
+        // 值类型不改变原数组的操作技巧
+        let map3 = arr_map2.map((value, index, arr_map) => {
+            return Object.assign({ click: 100 }, value);
+        })
+
+        let map4 = arr_map2.map((value, index, arr_map) => {
+            return {
+                title: value.title,
+                category: value.category,
+                click: 100
+            }
+        })
+
+        // reduce方法
+        // 使用场景: 统计, 求和, 求最大值...
     </script>
 </body>
 
