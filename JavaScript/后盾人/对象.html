@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对比面向过程和面向对象的编程
+        // 面向过程
+        // let name = "kevin";
+        // let grade = [
+        //     { name: "js", score: 60 },
+        //     { name: "react", score: 80 }
+        // ];
+        // function average(name, grade) {
+        //     const total = grade.reduce((t, l) => {
+        //         return t += l.score
+        //     }, 0)
+        //     return `${name}:${total / grade.length}分`;
+        // }
+        // console.log((average(name, grade)));
+
+        // let User = {
+        //     name: "Tom",
+        //     grade: [
+        //         { name: "js", score: 60 },
+        //         { name: "react", score: 80 }
+        //     ],
+        //     average() {
+        //         const total = this.grade.reduce((t, l) => t += l.score, 0);
+        //         return `${this.name}:${total / this.grade.length}分`;
+        //     }
+        // }
+        // console.log(User.average());
+
+        // 属性的基本操作方法
+        // 点形式和中括号形式
+        // let User = {
+        //     name: "kevin",
+        //     "birth year": 1999
+        // }
+        // for (const key in User) {
+        //     // 此处不能写成User.key
+        //     console.log(User[key]);
+        // }
+
+        // 对象的引用传址
+        // let user = { name: "kevin" };
+        // let other = user;
+        // other.age = 18;
+        // console.log(user);  // {name: "kevin", age: 18}
+        // console.log(other);  // {name: "kevin", age: 18}
+
+        // 传递的为值类型
+        // function show(a) {
+        //     a += 10;
+        //     console.log(a);  // 11
+        // }
+        // let a = 1
+        // show(a);
+        // console.log(a);  // 1
+
+        // let user = { name: "kevin" };
+        // function show(user) {
+        //     user.age = 18;
+        //     console.log(user);  // {name: "kevin", age: 18}
+        // }
+        // show(user);
+        // console.log(user);  // {name: "kevin", age: 18}
+
+        // 使用展开语法完成参数合并
+        // 在数组中
+        // let arr = [1, 2, 3];
+        // let a = [...arr, 5, 6, 7];
+        // console.log(a);
+        // 在对象中使用展开语法
+        // let user = { name: "kevin" };
+        // let other = { ...user, lang: "zh" };
+        // console.log(other);
+
+        // 展开语法的应用
+        function upload() {
+            let config = {
+                type: "*.jpeg",
+                size: 1000
+            };
+            console.log(config);
+        }
+        console.log(upload({}));
+
+        // 解构赋值
+        let info = { name: "kevin", url: "kevin.com" };
+
+    </script>
+</body>
+
+</html>
