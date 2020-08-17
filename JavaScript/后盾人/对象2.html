@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用工厂函数创建对象
+        function user(name, age) {
+            return {
+                name,
+                age,
+                show() {
+                    console.log(this.name + `.com`);
+                },
+                info() {
+                    console.log(this.name + `的年龄是` + this.age);
+                }
+            }
+        }
+        let user1 = user("kevin", 18);
+        user1.show();
+        user1.info();
+        let user2 = user("Tom", 20);
+        user2.show();
+        user2.info();
+
+        // 构造函数
+        function Student() {
+
+        }
+    </script>
+</body>
+
+</html>
