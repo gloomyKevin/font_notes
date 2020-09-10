@@ -28,6 +28,14 @@
         }
         console.dir(Hd);
         console.log(Hd === Hd.prototype.constructor);
+
+        console.log(
+            JSON.stringify(
+                Object.getOwnPropertyDescriptor(Hd.prototype, "show"),
+                null,
+                2
+            )
+        );
     </script>
 </body>
 
