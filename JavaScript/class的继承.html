@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* class ColorPoint extends Point {
+            constructor(x, y, color) {
+                super(x, y);   // 调用父类的constructor(x, y)
+                this.color = color;
+            }
+
+            toString() {
+                return this.color + ' ' + super.toString();  // 调用父类的toString()
+            }
+        } */
+
+        /* class Point {
+
+        }
+        class ColorPoint {
+            constructor() {
+
+            }
+        }
+        let cp = new ColorPoint(); */
+
+        /* class ColorPoint extends Point{
+
+        }
+        // 等同于
+        class ColorPoint extends Point{
+            constructor(...args){
+                super(...args)
+            }
+        } */
+
+        /* class Point {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        class ColorPoint extends Point {
+            constructor() {
+                this.color = color; // ReferenceError
+                super(x, y);
+                this.color = color; // 正确
+            }
+        } */
+
+        // super关键字
+        /* class A {
+            constructor() {
+                console.log(new.target.name);
+            }
+        }
+
+        class B extends A {
+            constructor() {
+                super();
+            }
+        }
+        new A() // A
+        new B() // B */
+
+
+    </script>
+</body>
+
+</html>
