@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const name = "kevin";
+        const age = 18;
+        const message = `my name is ${name}`;
+
+        // 标签模板字符串
+        function test(...args) {
+            console.log(...args);
+        }
+
+        test`my name is ${name}, age is ${age}`
+
+        // test`
+        //     font-size:15px;
+        //     color:${props => props.color};
+        // `
+    </script>
+</body>
+
+</html>

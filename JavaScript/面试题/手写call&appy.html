@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar() {
+        //     console.log(this.value);
+        // }
+
+        // bar.call(foo);
+
+        // var foo = {
+        //     value: 1,
+        //     bar() {
+        //         console.log(this.value);
+        //     }
+        // }
+
+        // foo.bar()
+
+        // 第一版call2
+        // Function.prototype.call2 = function (context) {
+        //     context.fn = this;
+        //     context.fn();
+        //     delete context.fn;
+        // }
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar() {
+        //     console.log(this.value);
+        // }
+
+        // bar.call2(foo);
+
+        // var foo = {
+        //     value: 1
+        // }
+        // function bar(name, age) {
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // 第二版call2的ES5实现
+        // Function.prototype.call2 = function (context) {
+        //     context.fn = this;
+        //     var args = [];
+        //     for (var i = 1, len = arguments.length; i < len; i++) {
+        //         args.push('arguments[' + i + ']')
+        //     }
+        //     eval('context.fn(' + args + ' )');
+        //     delete context.fn;
+        // }
+
+        // Function.prototype.call2_es6 = function (context) {
+        //     let fn = Symbol(context)
+        //     context[fn] = this;
+        //     let rest = [...arguments].slice(1);
+        //     context[fn](...rest);
+        // }
+
+        // var foo = {
+        //     value: 1
+        // }
+        // function bar(name, age) {
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // bar.call2_es6(foo, 'kevin', 18);
+
+        // 第三版,添加细节
+        // 设置context为空的默认值
+        // 设置返回值
+        // Function.prototype.call2_complete = function (context) {
+        //     var context = (typeof 'object' ? context : window);
+        //     let fn = Symbol(context);
+        //     context[fn] = this;
+        //     let rest = [...arguments].slice(1);
+        //     let result = context[fn](...rest);
+        //     delete context[fn];
+        //     return result
+        // }
+
+        // var foo = {
+        //     value: 1
+        // }
+        // function bar(name, age) {
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // bar.call2_complete(foo, 'kevin', 18);
+
+        // 继续优化默认值
+
+        // apply模拟实现
+        Function.prototype.apply2_complete = function (context, arr) {
+            var context = (typeof 'object' ? context : window);
+            let fn = Symbol(context);
+            context[fn] = this;
+            !arr && context[fn](...arr);
+            let result = context[fn](...arr);
+            delete context[fn];
+            return result;
+        }
+
+        var foo = {
+            value: 1
+        }
+        function bar(name, age) {
+            console.log(name);
+            console.log(age);
+            console.log(this.value);
+        }
+
+        bar.apply2_complete(foo, ['kevin', 18]);
+
+    </script>
+</body>
+
+</html>

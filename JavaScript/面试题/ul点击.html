@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id=”test”>
+        <li>这是第一条</li>
+        <li>这是第二条</li>
+        <li>这是第三条</li>
+    </ul>
+
+    <script>
+        var lis = document.querySelectorAll('li');
+        // 使用let方法
+        // for (let i = 0; i < lis.length; i++) {
+        //     lis[i].onclick = (e => alert(i))
+        // }
+
+        // for (let i = 0; i < lis.length; i++) {
+        //     lis[i].onclick = (function () {
+        //         alert(i)
+        //     })
+        // }
+
+        // 使用var,不使用闭包,使用that = this
+        // for (var i = 0; i < lis.length; i++) {
+        //     lis[i].index = i;
+        //     lis[i].onclick = function () {
+        //         alert(this.index)
+        //     }
+        // }
+
+        // 使用var,使用闭包
+        // 重点理解
+        // for (var i = 0; i < 3; i++) {
+        //     lis[i].index = i;
+        //     lis[i].onclick = (function (a) {
+        //         return function () {
+        //             alert(a);
+        //         }
+        //     })(i);
+        // }
+    </script>
+</body>
+
+</html>
