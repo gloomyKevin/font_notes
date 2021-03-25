@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function identify() {
+        //     return this.name.toUpperCase()
+        // }
+
+        // function speak() {
+        //     var greeting = "Hello, i'm " + identify.call(this)
+        //     console.log(greeting);
+        // }
+
+        // var me = {
+        //     name: 'Kevin'
+        // }
+
+        // var you = {
+        //     name: 'Reader'
+        // }
+
+        // console.log(identify.call(me))
+        // console.log(speak.call(you))
+
+        // 不使用this的情况
+        function identify(context) {
+            return context.name.toUpperCase()
+        }
+
+        function speak(context) {
+            var greeting = "Hello, I'm " + identify(context)
+            console.log(greeting)
+        }
+
+        var me = {
+            name: 'Kevin'
+        }
+
+        var you = {
+            name: 'Reader'
+        }
+
+        console.log(identify(me))
+        console.log(speak(you))
+
+        // 问题代码
+        function foo(num) {
+            console.log("foo:" + num)
+            this.count++
+        }
+
+        foo.count = 0
+
+        for(let i = 0; i < 10; i++) {
+            if(i > 5) {
+                foo(i)
+            }
+        }
+
+        console.log(foo.count)
+
+        // 退回到词法作用域的方式
+        function foo(num) {
+            console.log('foo:' + num)
+            data.count++
+        }
+
+        var data = {
+            count: 0
+        }
+
+        for(let i = 0; i < 10; i++) {
+            if(x > 5) {
+                foo(i)
+            }
+        }
+
+        console.log(data.count)
+
+        // 改造二
+        // 如果要从函数对象内部引用它自身，一般需要一个指向函数对象的词法标识符，即变量，来引用
+        function foo(num) {
+            console.log("foo:" + num)
+            foo.count++
+        }
+
+        foo.count = 0
+
+        for(let i = 0; i < 10; i++) {
+            if(i > 5) {
+                foo(i)
+            }
+        }
+
+        console.log(foo.count)
+
+        // 改造三
+        // 强制this指向foo函数对象
+        function foo(num) {
+            console.log("foo:" + num)
+            this.count++
+        }
+
+        foo.count = 0
+
+        for(let i = 0; i < 10; i++) {
+            if(i > 5) {
+                foo.call(foo, i)
+            }
+        }
+
+        console.log(foo.count)
+
+    </script>
+</body>
+
+</html>

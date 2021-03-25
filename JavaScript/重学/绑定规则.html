@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 隐式绑定
+        function foo() {
+            console.log(this.a)
+        }
+
+        var obj = {
+            a: 2,
+            foo: foo
+        }
+
+        console.log(obj.foo())
+
+        // 对象属性引用链只有上一层或者最后一层起作用
+        function foo() {
+            console.log(this.a)
+        }
+
+        var obj2 = {
+            a: 42,
+            foo: foo
+        }
+
+        var obj1 = {
+            a: 2,
+            obj2: obj2
+        }
+
+        console.log(obj1.obj2.foo())
+
+        // 硬绑定
+        function foo() {
+            console.log(this.a)
+        }
+
+        var obj = {
+            a: 2
+        }
+
+        var bar = function() {
+            foo.call(obj)
+        }
+
+        console.log(bar())
+    </script>
+</body>
+</html>
