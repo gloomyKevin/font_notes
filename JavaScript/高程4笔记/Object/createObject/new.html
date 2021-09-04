@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 入参为 constructor + some arguments，因为个数不定，所以不用显式形参，而是内部用arguments处理
+        function newObj() {
+            let o = Object.create(null)
+            let arguments = ...arguments.
+            let prototypeObj = constructor.prototype
+            o.__proto__ = prototypeObj
+            // 将this指向新对象
+            constructor.apply(o, arguments)
+            let constructorResult = constructor()
+            return typeof constructorResult === "object" ? constructorResult : o
+        }
+    </script>
+</body>
+</html>
